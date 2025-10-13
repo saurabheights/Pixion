@@ -1,0 +1,47 @@
+version: '3'
+
+# Define variables
+vars:
+  PROD_IMAGE_NAME: pixion
+  DEV_IMAGE_NAME: pixion_dev
+  IMAGE_VERSION: 0.1.0
+  PROJECT_DIR: pixion
+
+tasks:
+  # Default task that runs when no task is specified
+  default:
+    desc: "Welcome to Pixel Perception Lib."
+    cmds:
+      - echo "Welcome to Pixel Perception Lib."
+
+  build-docker-stage:
+    cmd: DOCKER_BUILDKIT=1 docker build --progress=plain -t {{.IMAGE_NAME}} --target {{.STAGE_NAME}} . -f Dockerfile
+    internal: true
+
+  build-prod-image:
+    desc: "Build the prod docker image."
+    cmds:
+      - echo "Building the Docker image..."
+      - task: build-docker-stage
+        vars: {STAGE_NAME: "prod", IMAGE_NAME: "{{.PROD_IMAGE_NAME}}:{{.IMAGE_VERSION}}"}
+
+  build-dev-image:
+    desc: "Build the dev docker image."
+    cmds:
+      - task: build-docker-stage
+        vars: {STAGE_NAME: "dev", IMAGE_NAME: "{{.DEV_IMAGE_NAME}}:{{.IMAGE_VERSION}}"}
+
+  run-lint:
+    desc: "Run ruff check and format"
+    cmds:
+      - ruff check --fix
+      - ruff format
+
+  run-pytests:
+    desc: "Run pytest and doctest"
+    cmd: docker run --rm -v `pwd`:/code {{.DEV_IMAGE_NAME}}:{{.IMAGE_VERSION}} pytest
+
+  run-type-check:
+    desc: "Run mypy"
+    cmd: docker run --rm -v `pwd`:/code {{.DEV_IMAGE_NAME}}:{{.IMAGE_VERSION}} mypy {{.PROJECT_DIR}}/
+

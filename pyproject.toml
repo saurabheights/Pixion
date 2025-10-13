@@ -1,0 +1,149 @@
+[project]
+name = "pixion"
+version = "0.1.0"
+description = "Tools and Library built at Pixel Perception"
+authors = [
+    {name="Saurabh Khanduja", email="khandujasaurabh@gmail.com"},
+]
+license = "GNU General Public License v3"
+readme = "README.md"
+requires-python = ">=3.9"
+keywords = [
+    "python",  # Add appropriate keywords to tag your project.
+]
+classifiers = [  # https://pypi.org/classifiers/
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "ruff (>=0.8.4, <1.0.0)",
+    "mypy (>=1.14.1, <2.0.0)",
+    "pre-commit (>=4.0.1, <5.0.0)",
+    "pytest (>=8.3.4, <9.0.0)",
+    "pytest-cov (>=6.0.0, <7.0.0)",
+]
+
+[project.urls]
+repository = "https://github.com/saurabheights/pixion"
+documentation = "https://python-poetry.org/docs/"
+"Bug Tracker" = "https://github.com/saurabheights/pixion/issues"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+# Move cache creation to .cache dir, enable doc test and generate coverage report.
+addopts = [
+    "--doctest-modules",
+    "--cov=pixion/",
+    "-p no:cacheprovider",
+]
+
+[tool.coverage.run]
+# Move pytest coverage file to .cache directory.
+data_file = '.cache/.coverage'
+
+[tool.coverage.report]
+# Skip empty files like __init__.py.
+# https://github.com/pytest-dev/pytest-cov/issues/88#issuecomment-1782719126
+skip_empty = true
+
+[tool.mypy]
+cache_dir = '.cache/.mypy_cache'
+
+[tool.ruff]
+# Exclude a variety of commonly ignored directories.
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".ipynb_checkpoints",
+    ".cache",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pyenv",
+    ".pytest_cache",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    ".vscode",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "site-packages",
+    "venv",
+]
+
+# Same as Black.
+line-length = 120
+indent-width = 4
+
+# Assume Python 3.12
+target-version = "py312"
+
+cache-dir = '.cache/.ruff_cache'
+
+[tool.ruff.lint]
+# Enable Pyflakes (`F`) and a subset of the pycodestyle (`E`)  codes by default.
+# Unlike Flake8, Ruff doesn't enable pycodestyle warnings (`W`) or
+# McCabe complexity (`C901`) by default.
+select = ["E4", "E7", "E9", "F"]
+ignore = []
+
+# Allow fix for all enabled rules (when `--fix`) is provided.
+fixable = ["ALL"]
+unfixable = []
+
+# Allow unused variables when underscore-prefixed.
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+[tool.ruff.format]
+# Like Black, use double quotes for strings.
+quote-style = "double"
+
+# Like Black, indent with spaces, rather than tabs.
+indent-style = "space"
+
+# Like Black, respect magic trailing commas.
+skip-magic-trailing-comma = false
+
+# Like Black, automatically detect the appropriate line ending.
+line-ending = "auto"
+
+# Enable auto-formatting of code examples in docstrings. Markdown,
+# reStructuredText code/literal blocks and doctests are all supported.
+#
+# This is currently disabled by default, but it is planned for this
+# to be opt-out in the future.
+docstring-code-format = false
+
+# Set the line length limit used when formatting code snippets in
+# docstrings.
+#
+# This only has an effect when the `docstring-code-format` setting is
+# enabled.
+docstring-code-line-length = "dynamic"

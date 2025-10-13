@@ -1,5 +1,10 @@
-# ImageProcessingExperimentScripts - Analyze HSV
+# Tools
 
-This page provides scripts for analyzing HSV channels of an image.
+## Analyze HSV
 
-1. hsvThresholder.py allows for quick lower and upper bound thresholding of images to see if ROI can be seperated from background. 
+This tool analyzes HSV channels of an image and allows for quick lower and upper bound thresholding of images to see if 
+ROI can be seperated from background. 
+
+```bash
+pixion.hsv_partition 
+```

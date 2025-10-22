@@ -5,87 +5,82 @@ import numpy as np
 def nothing(x):
     pass
 
-useCamera=False
+def main(args=None):
+    useCamera = False
 
-# Check if filename is passed
-if (len(sys.argv) <= 1) :
-    print ("'Usage: python color_thresholding.py <ImageFilePath>' to ignore camera and use a local image.")
-    useCamera = True
+    # Check if filename is passed
+    if args is None or len(args) <= 1:
+        print("'Usage: color-threshold <ImageFilePath>' to ignore camera and use a local image.")
+        useCamera = True
 
-# Create a window
-cv2.namedWindow('image')
+    # Create a window
+    cv2.namedWindow('image')
 
-# create trackbars for color change
-cv2.createTrackbar('HMin','image',0,179,nothing) # Hue is from 0-179 for Opencv
-cv2.createTrackbar('SMin','image',0,255,nothing)
-cv2.createTrackbar('VMin','image',0,255,nothing)
-cv2.createTrackbar('HMax','image',0,179,nothing)
-cv2.createTrackbar('SMax','image',0,255,nothing)
-cv2.createTrackbar('VMax','image',0,255,nothing)
+    # create trackbars for color change
+    cv2.createTrackbar('HMin','image',0,179,nothing) # Hue is from 0-179 for Opencv
+    cv2.createTrackbar('SMin','image',0,255,nothing)
+    cv2.createTrackbar('VMin','image',0,255,nothing)
+    cv2.createTrackbar('HMax','image',0,179,nothing)
+    cv2.createTrackbar('SMax','image',0,255,nothing)
+    cv2.createTrackbar('VMax','image',0,255,nothing)
 
-# Set default value for MAX HSV trackbars.
-cv2.setTrackbarPos('HMax', 'image', 179)
-cv2.setTrackbarPos('SMax', 'image', 255)
-cv2.setTrackbarPos('VMax', 'image', 255)
+    # Set default value for MAX HSV trackbars.
+    cv2.setTrackbarPos('HMax', 'image', 179)
+    cv2.setTrackbarPos('SMax', 'image', 255)
+    cv2.setTrackbarPos('VMax', 'image', 255)
 
-# Initialize to check if HSV min/max value changes
-hMin = sMin = vMin = hMax = sMax = vMax = 0
-phMin = psMin = pvMin = phMax = psMax = pvMax = 0
+    # Initialize to check if HSV min/max value changes
+    hMin = sMin = vMin = hMax = sMax = vMax = 0
+    phMin = psMin = pvMin = phMax = psMax = pvMax = 0
 
-# Output Image to display
-if useCamera:
-    cap = cv2.VideoCapture(0)
-    # Wait longer to prevent freeze for videos.
-    waitTime = 330
-else:
-    img = cv2.imread(sys.argv[1])
-    output = img
-    waitTime = 33
-
-while(1):
-
+    # Output Image to display
     if useCamera:
-        # Capture frame-by-frame
-        ret, img = cap.read()
+        cap = cv2.VideoCapture(0)
+        waitTime = 330
+    else:
+        img = cv2.imread(sys.argv[1])
         output = img
+        waitTime = 33
 
-    # get current positions of all trackbars
-    hMin = cv2.getTrackbarPos('HMin','image')
-    sMin = cv2.getTrackbarPos('SMin','image')
-    vMin = cv2.getTrackbarPos('VMin','image')
+    while True:
+        if useCamera:
+            ret, img = cap.read()
+            output = img
 
-    hMax = cv2.getTrackbarPos('HMax','image')
-    sMax = cv2.getTrackbarPos('SMax','image')
-    vMax = cv2.getTrackbarPos('VMax','image')
+        # get current positions of all trackbars
+        hMin = cv2.getTrackbarPos('HMin','image')
+        sMin = cv2.getTrackbarPos('SMin','image')
+        vMin = cv2.getTrackbarPos('VMin','image')
 
-    # Set minimum and max HSV values to display
-    lower = np.array([hMin, sMin, vMin])
-    upper = np.array([hMax, sMax, vMax])
+        hMax = cv2.getTrackbarPos('HMax','image')
+        sMax = cv2.getTrackbarPos('SMax','image')
+        vMax = cv2.getTrackbarPos('VMax','image')
 
-    # Create HSV Image and threshold into a range.
-    hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
-    mask = cv2.inRange(hsv, lower, upper)
-    output = cv2.bitwise_and(img,img, mask= mask)
+        # Set minimum and max HSV values to display
+        lower = np.array([hMin, sMin, vMin])
+        upper = np.array([hMax, sMax, vMax])
 
-    # Print if there is a change in HSV value
-    if( (phMin != hMin) | (psMin != sMin) | (pvMin != vMin) | (phMax != hMax) | (psMax != sMax) | (pvMax != vMax) ):
-        print("(hMin = %d , sMin = %d, vMin = %d), (hMax = %d , sMax = %d, vMax = %d)" % (hMin , sMin , vMin, hMax, sMax , vMax))
-        phMin = hMin
-        psMin = sMin
-        pvMin = vMin
-        phMax = hMax
-        psMax = sMax
-        pvMax = vMax
+        # Create HSV Image and threshold into a range.
+        hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+        mask = cv2.inRange(hsv, lower, upper)
+        output = cv2.bitwise_and(img,img, mask=mask)
 
-    # Display output image
-    cv2.imshow('image',output)
+        # Print if there is a change in HSV value
+        if (phMin != hMin) or (psMin != sMin) or (pvMin != vMin) or (phMax != hMax) or (psMax != sMax) or (pvMax != vMax):
+            print(f"(hMin={hMin}, sMin={sMin}, vMin={vMin}), (hMax={hMax}, sMax={sMax}, vMax={vMax})")
+            phMin, psMin, pvMin, phMax, psMax, pvMax = hMin, sMin, vMin, hMax, sMax, vMax
 
-    # Wait longer to prevent freeze for videos.
-    if cv2.waitKey(waitTime) & 0xFF == ord('q'):
-        break
+        # Display output image
+        cv2.imshow('image', output)
 
-# Release resources
-if useCamera:
-    cap.release()
-cv2.destroyAllWindows()
+        if cv2.waitKey(waitTime) & 0xFF == ord('q'):
+            break
 
+    # Release resources
+    if useCamera:
+        cap.release()
+    cv2.destroyAllWindows()
+
+
+if __name__ == "__main__":
+    main()

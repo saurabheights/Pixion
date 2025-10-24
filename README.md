@@ -3,7 +3,9 @@
 * [Pixel Perception Lib](#pixel-perception-lib)
   * [Introduction](#introduction)
   * [Installing the library](#installing-the-library)
-  * [Setup](#setup)
+  * [Library Features](#library-features)
+  * [Extra Tools](#extra-tools)
+  * [Contribution Guidelines](#contribution-guidelines)
     * [Developer Dependencies](#developer-dependencies)
       * [Taskfile](#taskfile)
       * [Ruff](#ruff)
@@ -21,10 +23,25 @@ Tools and Library built at Pixel Perception
 
 ```bash
 pip install pixion
+```
+
+## Library Features
+
+TODO.
+
+## Extra Tools
+
+Library provides following tools:
+```
+# Allows color thresholding of webcam/image/videos in HSV format .
 hue-picker
 ```
 
-## Setup
+For more details, see [tools/README.md](./tools/README.md)
+
+## Contribution Guidelines
+
+Install following tools and run appropriate tasks for linting and formatting before pushing merge-request.
 
 ### Developer Dependencies
 

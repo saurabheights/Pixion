@@ -1,6 +1,6 @@
 [project]
 name = "pixion"
-version = "0.1.0"
+version = "0.1.1"
 description = "Tools and Library built at Pixel Perception"
 authors = [
     {name="Saurabh Khanduja", email="khandujasaurabh@gmail.com"},
@@ -11,6 +11,8 @@ requires-python = ">=3.9"
 keywords = [
     "python",  # Add appropriate keywords to tag your project.
 ]
+packages = [{ include = "tools" }]
+
 classifiers = [  # https://pypi.org/classifiers/
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
@@ -27,6 +29,13 @@ classifiers = [  # https://pypi.org/classifiers/
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 dependencies = []
+
+[tool.poetry.scripts]
+hue-picker = "tools.color_thresholding:main"
+
+[tool.poetry.dependencies]
+opencv-python = "^4.10.0"
+numpy = "^1.26.0"
 
 [dependency-groups]
 dev = [

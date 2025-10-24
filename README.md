@@ -21,7 +21,7 @@ Tools and Library built at Pixel Perception
 
 ```bash
 pip install pixion
-pixion-color-thresholder
+hue-picker
 ```
 
 ## Setup

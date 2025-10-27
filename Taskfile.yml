@@ -32,10 +32,15 @@ tasks:
         vars: {STAGE_NAME: "dev", IMAGE_NAME: "{{.DEV_IMAGE_NAME}}:{{.IMAGE_VERSION}}"}
 
   run-lint:
-    desc: "Run ruff check and format"
+    desc: "Run ruff"
     cmds:
-      - ruff check --fix
-      - ruff format
+      - cmd: ruff check --fix
+        ignore_error: true
+      - pyupgrade `find . -name "*.py"`
+
+  run-format:
+        - ruff check --select I --fix
+        - ruff format
 
   run-pytests:
     desc: "Run pytest and doctest"

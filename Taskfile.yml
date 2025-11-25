@@ -32,7 +32,7 @@ tasks:
         vars: {STAGE_NAME: "dev", IMAGE_NAME: "{{.DEV_IMAGE_NAME}}:{{.IMAGE_VERSION}}"}
 
   run-lint:
-    desc: "Run ruff"
+    desc: "Run linters"
     cmds:
       - cmd: ruff check --fix
         ignore_error: true

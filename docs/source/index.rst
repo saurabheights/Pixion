@@ -4,51 +4,27 @@
    contain the root `toctree` directive.
 
 Pixel Perception Lib
-================================
+=====================
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+   :maxdepth: 1
+   :caption: Getting Started
+   
+   getting-started/introduction
+   getting-started/installation
+   getting-started/basic-usage
+   getting-started/library-features
+   getting-started/extra-tools
 
-   pixion
-   tools
+.. toctree::
+   :maxdepth: 1
+   :caption: Python API
 
-Introduction
-------------
-
-Tools and Library built at Pixel Perception
-
-
-Installing the library
-------------
-
-.. code-block:: bash
-
-   pip install pixion
-
-
-Library Features
-------------
-
-TODO.
-
-
-Extra Tools
-------------
-
-Library provides following tools:
-
-.. code-block:: text
-
-   # Allows color thresholding of webcam/image/videos in HSV format .
-   hue-picker
-
-
-For more details, see ``tools/README.md`` inside the repository.
+   ../autoapi/index
 
 
 Contribution Guidelines
-------------
+-----------------------
 
 Install the following tools and run appropriate tasks for linting and formatting
 before pushing a merge request.
@@ -92,6 +68,6 @@ git commit.
 
 
 License
-------------
+-------
 
 Distributed under the terms of the **GNU General Public License v3**.

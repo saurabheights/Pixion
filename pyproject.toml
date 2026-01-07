@@ -7,7 +7,7 @@ authors = [
 ]
 license = "GNU General Public License v3"
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 keywords = [
     "python",  # Add appropriate keywords to tag your project.
 ]

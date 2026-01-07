@@ -1,5 +1,5 @@
-from pathlib import Path
 import sys
+from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT))
@@ -14,13 +14,10 @@ release = "0.1.1"
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
-  #  "sphinx.ext.autodoc",   Import code & docstrings
     "sphinx.ext.napoleon",  # Google / NumPy style docstrings
-  #  "sphinx.ext.autosummary",   Auto-generate API summaries
     "sphinx.ext.viewcode",  # Add links to source code
     "autoapi.extension",
 ]
-# autosummary_generate = True
 
 templates_path = ["_templates"]
 exclude_patterns = []
@@ -33,7 +30,7 @@ html_theme = "furo"
 html_static_path = ["_static"]
 
 # Theme overrides
-html_css_files = ['css/furo_override.css']
+html_css_files = ["css/furo_override.css"]
 
 autoapi_type = "python"
 
@@ -55,4 +52,3 @@ autoapi_options = [
     "show-module-summary",
     "show-inheritance",
 ]
-

@@ -29,6 +29,15 @@ exclude_patterns = []
 html_theme = "furo"
 html_static_path = ["_static"]
 
+html_theme_options = {
+    "top_of_page_buttons": [
+        "edit",
+    ],
+    "source_repository": "https://github.com/saurabheights/Pixion",
+    "source_branch": "master",
+    "source_directory": "docs/source/",
+}
+
 # Theme overrides
 html_css_files = ["css/furo_override.css"]
 

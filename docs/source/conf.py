@@ -53,6 +53,7 @@ autoapi_keep_files = True
 
 autoapi_generate_package_index = False
 
+autoapi_template_dir = "_templates/autoapi"
 
 # What AutoAPI should include
 autoapi_options = [

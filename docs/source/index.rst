@@ -22,52 +22,9 @@ Pixel Perception Lib
 
    ../autoapi/index
 
+.. toctree::
+   :maxdepth: 1
+   :caption: Development
 
-Contribution Guidelines
------------------------
-
-Install the following tools and run appropriate tasks for linting and formatting
-before pushing a merge request.
-
-
-Developer Dependencies
-----------------------
-
-Taskfile
-
-We use `Taskfile <https://taskfile.dev/>`_ to allow developers to run common tasks.
-Do enable
-`autocompletion <https://taskfile.dev/installation/#setup-completions>`_.
-
-.. code-block:: shell
-
-   sudo snap install task --classic
-   echo 'eval "$(task --completion bash)"' >> ~/.bashrc
-
-
-Ruff
-
-
-To apply ruff checks and formatting, run:
-
-.. code-block:: shell
-
-   task run-lint
-
-
-Pre-Commit Hook
-
-
-You can use pre-commit to trigger ``ruff check`` and ``ruff format`` on each
-git commit.
-
-.. code-block:: shell
-
-   pip install pre-commit
-   pre-commit install
-
-
-License
--------
-
-Distributed under the terms of the **GNU General Public License v3**.
+   devlopment/contribution.rst
+   devlopment/license.rst

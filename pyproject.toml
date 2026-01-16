@@ -1,6 +1,6 @@
 [project]
 name = "pixion"
-version = "0.1.1"
+version = "0.0.0"
 description = "Tools and Library built at Pixel Perception"
 authors = [
     {name="Saurabh Khanduja", email="khandujasaurabh@gmail.com"},

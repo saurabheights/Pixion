@@ -4,7 +4,8 @@ version: '3'
 vars:
   PROD_IMAGE_NAME: pixion
   DEV_IMAGE_NAME: pixion_dev
-  IMAGE_VERSION: 0.1.0
+  IMAGE_VERSION:
+    sh: grep "^version = " pyproject.toml | cut -d "\"" -f2
   PROJECT_DIR: pixion
 
 tasks:

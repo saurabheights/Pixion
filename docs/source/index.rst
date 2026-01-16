@@ -26,5 +26,5 @@ Pixel Perception Lib
    :maxdepth: 1
    :caption: Development
 
-   devlopment/contribution.rst
-   devlopment/license.rst
+   development/contribution.rst
+   development/license.rst

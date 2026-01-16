@@ -28,14 +28,13 @@ classifiers = [  # https://pypi.org/classifiers/
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
-dependencies = []
+dependencies = [
+    "opencv-python ( >= 4.10.0)",
+    "numpy ( >=1.26.0)"
+]
 
 [tool.poetry.scripts]
 hue-picker = "tools.color_thresholding:main"
-
-[tool.poetry.dependencies]
-opencv-python = "^4.10.0"
-numpy = "^1.26.0"
 
 [dependency-groups]
 dev = [

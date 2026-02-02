@@ -14,4 +14,4 @@ distributed modifications remain free and open source.
   - Provide source code
   - Use the same GPLv3 license
 
-The full license text is available in the repository: `LICENSE <https://github.com/saurabheights/Pixion/blob/master/LICENSE>`_
+The full license text is available in the repository: `LICENSE <https://github.com/saurabheights/Pixion/blob/main/LICENSE>`_

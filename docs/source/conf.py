@@ -36,7 +36,7 @@ html_theme_options = {
         "edit",
     ],
     "source_repository": "https://github.com/saurabheights/Pixion",
-    "source_branch": "master",
+    "source_branch": "main",
     "source_directory": "docs/source/",
 }
 

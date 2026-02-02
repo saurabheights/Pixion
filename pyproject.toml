@@ -165,7 +165,7 @@ docstring-code-format = false
 docstring-code-line-length = "dynamic"
 
 [tool.semantic_release]
-branch = "master"
+branch = "main"
 version_source = "file"
 version_variable = "pyproject.toml:project.version"
 version_toml = [
